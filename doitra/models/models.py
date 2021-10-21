@@ -28,6 +28,9 @@ class doitra(models.Model):
     owner=fields.Text(string='Owner')
     hotline=fields.Text(string='Hotline')
     trongluong=fields.Float(string='Trọng Lượng')
+    guiqua=fields.Selection([('buudien', 'Bưu Điện'), ('ghtk', 'Giao Hàng Tiết Kiệm'),('khac','Khác')],
+                                 string='Gửi Qua', default='')
+
 
 
 
