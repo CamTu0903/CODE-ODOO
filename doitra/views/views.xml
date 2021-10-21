@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="shoes_view">
+            <field name="name">shoes.view</field>
+            <field name="model">doitra.manage</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="madonhang"/>
+                                <field name="soluong"/>
+                                <field name="tingtrang"/>
+                                <field name="lido"/>
+                                <field name="yeucau"/>
+                                <field name="ngaytao"/>
+                                <field name="chiuthue"/>
+                                <field name="trangthai"/>
+                                <field name="ghichu"/>
+                                <field name="xacnhan"/>
+                                <field name="donvi"/>
+                                <field name="owner"/>
+                                <field name="hotline"/>
+                                <field name="trongluong"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="shoes_tree_view" model="ir.ui.view">
+            <field name="name">shoes.Tree.View</field>
+            <field name="model">doitra.manage</field>
+            <field name="arch" type="xml">
+                <tree>
+                  <field name="madonhang"/>
+                  <field name="soluong"/>
+                  <field name="tingtrang"/>
+                  <field name="lido"/>
+                  <field name="yeucau"/>
+                  <field name="ngaytao"/>
+                  <field name="chiuthue"/>
+                  <field name="trangthai"/>
+                  <field name="ghichu"/>
+                  <field name="xacnhan"/>
+                  <field name="donvi"/>
+                  <field name="owner"/>
+                  <field name="hotline"/>
+                  <field name="trongluong"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="shoes_action">
+            <field name="name">Đổi Trả</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">doitra.manage</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem name="Đổi Trả" id="shoes_menu"
+                  action="shoes_action"
+                  sequence="10"
+                  groups="base.group_user"/>
+    </data>
+</odoo>
