@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="returns_form_view" model="ir.ui.view">
+            <field name="name">returns.goods.form.view</field>
+            <field name="model">returns.goods</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" string="Goods Name" class="oe_edit_only"/>
+                            <h1><field name="name" placeholder="name"/></h1>
+                            <label for="owner_id"/>
+                            <h3><field name="owner_id"/></h3>
+                            <label for="ChiuThue" string="Tax"/>
+                            <h3><field name="ChiuThue"/></h3>
+                            <label for="HoanTien" string="Refund"/>
+                            <h3><field name="HoanTien"/></h3>
+                        </div>
+                        <group name="Phone_image">
+                            <group>
+                                <field name="NgayTao"/>
+                                <field name="SoLuong"/>
+                                <field name="Status"/>
+                            </group>
+                            <group>
+                                <field name="DonVi"/>
+                                <field name="Request"/>
+                                <field name="Method"/>
+                                <field name="GuiQua"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="general_information" string="General Information">
+								<group>
+									<group>
+										<field name="LyDoTraHang"/>
+									</group>
+									<group>
+										<label for="TinhTrangHangHoa" colspan="2"/>
+										<field name="TinhTrangHangHoa" colspan="2" nolabel="1"/>
+									</group>
+                                    <field name="GhiChu"/>
+								</group>
+							</page>
+							<page name="additional_information" string="Additional Information">
+								<group>
+									<group string="HotLine">
+										<field name="HotLine" string="1800 1060"/>
+									</group>
+								</group>
+							</page>
+						</notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="returns_goods_tree_view" model="ir.ui.view">
+            <field name="name">returns.goods.tree.view</field>
+            <field name="model">returns.goods</field>
+            <field name="arch" type="xml">
+                <tree string="Phones" default_order="create_date desc">
+                    <field name="name"/>
+                    <field name="Status"/>
+                    <field name="SoLuong"/>
+                    <field name="NgayTao"/>
+                    <field name="LyDoTraHang"/>
+                    <field name="Request"/>
+                    <field name="owner_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_returns_goods" model="ir.actions.act_window">
+            <field name="name">Phone</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">returns.goods</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                    <p>create </p>
+           </field>
+        </record>
+
+        <menuitem id="menu_returns_goods"
+            name="Phone"
+            action="action_returns_goods"
+            sequence="10"
+            groups="base.group_user"/>
+    </data>
+</odoo>
