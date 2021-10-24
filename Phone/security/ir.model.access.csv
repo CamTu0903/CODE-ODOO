@@ -1,2 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_returns_goods,access_returns_goods,model_returns_goods,base.group_user,1,1,1,1
+access_product_phone,access_product_phone,model_product_phone,base.group_user,1,1,1,1

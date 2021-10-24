@@ -10,24 +10,27 @@
                         <div class="oe_title">
                             <label for="name" string="Goods Name" class="oe_edit_only"/>
                             <h1><field name="name" placeholder="name"/></h1>
+                            <group>
+                                <field name="Phone_image" widget="Phone_image" />
+                            </group>
                             <label for="owner_id"/>
                             <h3><field name="owner_id"/></h3>
-                            <label for="ChiuThue" string="Tax"/>
-                            <h3><field name="ChiuThue"/></h3>
-                            <label for="HoanTien" string="Refund"/>
-                            <h3><field name="HoanTien"/></h3>
+                            <group>
+                                <field name="ChiuThue"/>
+                                <field name="HoanTien"/>
+                            </group>
                         </div>
                         <group name="Phone_image">
                             <group>
                                 <field name="NgayTao"/>
                                 <field name="SoLuong"/>
-                                <field name="Status"/>
+                                <field name="DonVi"/>
                             </group>
                             <group>
-                                <field name="DonVi"/>
                                 <field name="Request"/>
                                 <field name="Method"/>
                                 <field name="GuiQua"/>
+                                <field name="Status"/>
                             </group>
                         </group>
                         <notebook>
@@ -40,13 +43,15 @@
 										<label for="TinhTrangHangHoa" colspan="2"/>
 										<field name="TinhTrangHangHoa" colspan="2" nolabel="1"/>
 									</group>
-                                    <field name="GhiChu"/>
+                                    <group>
+										<field name="GhiChu"/>
+									</group>
 								</group>
 							</page>
 							<page name="additional_information" string="Additional Information">
 								<group>
 									<group string="HotLine">
-										<field name="HotLine" string="1800 1060"/>
+										<field name="HotLine" />
 									</group>
 								</group>
 							</page>
@@ -83,9 +88,12 @@
         </record>
 
         <menuitem id="menu_returns_goods"
-            name="Phone"
+            name="Returns"
             action="action_returns_goods"
             sequence="10"
-            groups="base.group_user"/>
+            groups="base.group_user"
+
+        />
+
     </data>
 </odoo>

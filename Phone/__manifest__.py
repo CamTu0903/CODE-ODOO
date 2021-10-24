@@ -11,6 +11,7 @@
     'data': [
         'security/ir.model.access.csv',
         'views/returns.xml',
+        'views/product.xml',
     ],
     # only loaded in demonstration mode
     'installable': True,

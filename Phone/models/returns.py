@@ -9,7 +9,13 @@ class ReturnsGoods(models.Model):
     MaDonHang = fields.Float('Code Bill', default=0)
     SoLuong=fields.Integer('Number')
     TinhTrangHangHoa=fields.Text('Condition of goods')
-    Phone_image = fields.Binary("Image", attachment=True, help="Image")
+
+  #  Phone_image = fields.Binary(string="Image", help="Image")
+    Phone_image = fields.Binary(
+        string="Image",
+        required=True
+    )
+
     LyDoTraHang=fields.Text('Return reason')
     Request=fields.Selection([
         ('change', 'Change'),
@@ -39,6 +45,7 @@ class ReturnsGoods(models.Model):
         ('shipchung','Shipchung')
     ], string='Sent through', default='viettel post')
     GhiChu=fields.Text('Notes')
-    DonVi=fields.Selection(['chiec','Chiec'],string='Unit',default='Chiec' )
-    HotLine=fields._String('1800 1060')
+    DonVi=fields.Char('Unit', default='Chiec')
+    HotLine=fields.Char(string='Hotline', default='1800 1060')
+    Phone_image = fields.Binary("Phone Image", attachment=True, help="Phone Image")
 
