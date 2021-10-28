@@ -7,12 +7,14 @@ class ProductPhone(models.Model):
     _inherits = {'product.template': 'product_phone_id'}
     _description = "Product Phone"
 
+    product_id = fields.Char(string='PhoneID', required=True, copy=False, readonly=True,
+                       default=lambda seft: _('New'))
     name = fields.Char('New Name', required=True)
     owner_id = fields.Many2one('res.partner', string='Owner')
 
     product_phone_id = fields.Many2one(
         'product.template', 'Phone',
-        auto_join=True, index=True, ondelete="cascade", required=True)
+        auto_join=True, index=True, ondelete="cascade", required=True,default=lambda seft: _('New'))
 
     MoTaSP=fields.Text('Description')
     #quanhe many2one tao object cho nhanhieu
@@ -83,3 +85,10 @@ class ProductPhone(models.Model):
             record.final_price = record.basic_price + record.bonus_price
 
     product_ids = fields.Many2many('product.product', string='Related Products')
+
+    @api.model
+    def create(self, vals):
+        if vals.get('product_id', ('New')) == ('New'):
+            vals['product_id'] = self.env['ir.sequence'].next_by_code('product.phone') or _('New')
+        res = super(ProductPhone, self).create(vals)
+        return res

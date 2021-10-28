@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate ="1">
+        <record id="seq_module_product" model="ir.sequence">
+            <field name="name">returns product </field>
+            <field name="code">product.phone</field>
+            <field name="prefix">MSP</field>
+            <field name="padding">6</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

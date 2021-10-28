@@ -17,6 +17,7 @@
                             <h3><field name="owner_id"/></h3>
                             <group>
                                 <field name="ChiuThue"/>
+                                <field name="madonhang"/>
                                 <field name="HoanTien"/>
                             </group>
                         </div>
@@ -66,6 +67,7 @@
             <field name="model">returns.goods</field>
             <field name="arch" type="xml">
                 <tree string="Phones" default_order="create_date desc">
+                    <field name="madonhang"/>
                     <field name="name"/>
                     <field name="Status"/>
                     <field name="SoLuong"/>

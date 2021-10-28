@@ -6,7 +6,8 @@ class ReturnsGoods(models.Model):
     _name = "returns.goods"
     _description = "Returns goods model"
     name = fields.Char('Goods Name', required=True)
-    MaDonHang = fields.Float('Code Bill', default=0)
+    madonhang = fields.Char(string='Mã Đơn Hàng', required=True, copy=False, readonly=True,
+                       default=lambda seft: _('New'))
     SoLuong=fields.Integer('Number')
     TinhTrangHangHoa=fields.Text('Condition of goods')
 
@@ -49,3 +50,10 @@ class ReturnsGoods(models.Model):
     HotLine=fields.Char(string='Hotline', default='1800 1060')
     Phone_image = fields.Binary("Phone Image", attachment=True, help="Phone Image")
 
+
+    @api.model
+    def create(self, vals):
+        if vals.get('madonhang', ('New')) == ('New'):
+            vals['madonhang'] = self.env['ir.sequence'].next_by_code('returns.goods') or _('New')
+        res = super(ReturnsGoods, self).create(vals)
+        return res
