@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="phone_tree" model="ir.ui.view">
+            <field name="name">phone.phone.tree</field>
+            <field name="model">phone.phone</field>
+            <field name="arch" type="xml">
+                <tree>
+                     <field name="MaSP"/>
+                     <field name="Ten"/>
+                     <field name="LoaiSP"/>
+                     <field name="SL"/>
+                </tree>
+            </field>
+    </record>
+
+    <record id="phone_form" model="ir.ui.view">
+            <field name="name">phone.phone.form</field>
+            <field name="model">phone.phone</field>
+            <field name="arch" type="xml">
+                <form>
+                        <sheet>
+                            <group>
+                                <group>
+                                    <field name="MaSP"/>
+                                    <field name="Ten"/>
+                                </group>
+
+                                <group>
+                                    <field name="LoaiSP"/>
+                                    <field name="NhanHieu"/>
+                                </group>
+                            </group>
+
+                            <group>
+                                <field name="MoTa"/>
+                            </group>
+
+                            <group>
+                                <group>
+                                    <field name="BaoHanh"/>
+                                    <field name="ThoiLuongBH"/>
+                                </group>
+
+                                <group>
+                                    <field name="SL"/>
+                                    <field name="TinhTrang"/>
+                                </group>
+                            </group>
+
+                            <group>
+                                <group>
+                                    <field name="GiaNhap"/>
+                                    <field name="GiaBan"/>
+                                </group>
+
+                                <group>
+                                    <field name="Qua"/>
+                                    <field name="TinhTrangMua"/>
+                                </group>
+                            </group>
+
+                            <group>
+                                <group>
+                                    <field name="ChiNhanh"/>
+                                    <field name="TonKho"/>
+                                </group>
+
+                                <group>
+                                    <field name="TrongLuong"/>
+                                    <field name="NhaCungCap"/>
+                                </group>
+
+                                <group>
+                                    <field name="DoiTuong"/>
+                                    <field name="ThuMua"/>
+                                </group>
+                            </group>
+                        </sheet>
+                </form>
+            </field>
+    </record>
+
+    <record id="phone_action" model="ir.actions.act_window">
+            <field name="name">Phone Product</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">phone.phone</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create your phone product
+                </p>
+            </field>
+    </record>
+
+    <menuitem id="phone_root"
+              name="Phone"
+              sequence="10"/>
+
+    <menuitem id="phone_product_root"
+              name="phone_product"
+              parent="phone_root"
+              sequence="10"/>
+
+    <menuitem id="phone_product"
+              name="phone_product"
+              parent="phone_product_root"
+              action="phone_action"
+              sequence="10"/>
+</odoo>
