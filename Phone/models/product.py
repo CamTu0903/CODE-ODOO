@@ -4,7 +4,6 @@ from odoo.exceptions import UserError, ValidationError
 
 class ProductPhone(models.Model):
     _name = "product.phone"
-    _inherits = {'product.template': 'product_phone_id'}
     _description = "Product Phone"
 
     product_id = fields.Char(string='PhoneID', required=True, copy=False, readonly=True,
@@ -12,9 +11,9 @@ class ProductPhone(models.Model):
     name = fields.Char('New Name', required=True)
     owner_id = fields.Many2one('res.partner', string='Owner')
 
-    product_phone_id = fields.Many2one(
-        'product.template', 'Phone',
-        auto_join=True, index=True, ondelete="cascade", required=True,default=lambda seft: _('New'))
+    # product_phone_id = fields.Many2one(
+    #     'product.template', 'Phone',
+    #     auto_join=True, index=True, ondelete="cascade", required=True,default=lambda seft: _('New'))
 
     MoTaSP=fields.Text('Description')
     #quanhe many2one tao object cho nhanhieu
@@ -32,40 +31,16 @@ class ProductPhone(models.Model):
     ], string='Status', default='stocking')
     BaoHanh=fields.Boolean('Warranty',default=False)
     #
-    ThoiLGBH=fields.Selection([
-        ('6mth', '6 Month'),
-        ('8mth', '8 Month'),
-        ('12mth', '12 Month'),
-    ], string='Warranty period', default='6mth')
+    ThoiLGBH=fields.Float(digits=(1, 36), help="Duration in months")
     #
-    QuaTangKem=fields.Selection([
-        ('earphone', 'Earphone'),
-        ('phone case', 'Phone case'),
-    ], string='Bundled gift', default='earphone')
     TinhTrangMua=fields.Selection([
         ('buy now', 'Buy now'),
         ('nstallment purchase', 'Installment purchase'),
     ], string='Purchase status', default='buy now')
     #
-    ChiNhanh=fields.Selection([
-        ('tphcm', 'TPHCM'),
-        ('ha noi', 'Ha Noi'),
-        ('da nang', 'Da Nang'),
-        ('ha tinh', 'Ha Tinh'),
-        ('hai duong', 'Hai Duong'),
-    ], string='Branch', default='tphcm')
     TonKho=fields.Integer('Inventory')
     ThuMua=fields.Boolean('Repurchase',default=False)
-    DoiTuongKH=fields.Selection([
-        ('student', 'Student'),
-        ('worker', 'Worker'),
-        ('technology fanatics', 'Technology Fanatics'),
-    ], string='Customer object', default='student')
-    NhaCC=fields.Selection([
-        ('samsung', 'Samsung'),
-        ('smartcom', 'Smartcom'),
-        ('apple', 'Apple'),
-    ], string='supplier', default='samsung')
+
     PhuKien=fields.Selection([
         ('phone case', 'Phone case'),
         ('earphone', 'Earphone'),
@@ -80,11 +55,41 @@ class ProductPhone(models.Model):
     basic_price = fields.Float("Basic Price", default=0)
     final_price = fields.Float("Final Price", compute='_compute_final_price')
 
+    #
+    Qua_Tang = fields.One2many('product.gift', 'gift', string='Gift', required=True)
+    NCC = fields.One2many('product.suppliers', 'suppliers', string='Suppliers', required=True)
+    Doituong_KH = fields.One2many('product.customers', 'customers', string='Potential customers', required=True)
+    Chi_nhanh = fields.One2many('product.branch', 'branch', string='Branch', required=True)
+
     def _compute_final_price(self):
         for record in self:
             record.final_price = record.basic_price + record.bonus_price
 
     product_ids = fields.Many2many('product.product', string='Related Products')
+
+class gift(models.Model):
+    _name = "product.gift"
+    _description = "gift model"
+
+    gift = fields.Many2one('product.phone', string='Gift')
+
+class Suppliers(models.Model):
+    _name = "product.suppliers"
+    _description = "suppliers model"
+
+    suppliers = fields.Many2one('product.phone', string='Suppliers')
+
+class customers(models.Model):
+    _name = "product.customers"
+    _description = "customers model"
+
+    customers = fields.Many2one('product.phone', string='Potential customers')
+
+class branch(models.Model):
+    _name = "product.branch"
+    _description = "branch model"
+
+    branch = fields.Many2one('product.phone', string='Branch')
 
     @api.model
     def create(self, vals):
