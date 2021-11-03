@@ -114,7 +114,18 @@
     <menuitem id="menu_product_phone"
               name="Product"
               action="action_product_phone"
-              sequence="10"
+              sequence="1"
               groups="base.group_user"/>
+        <menuitem id ="return_phone"
+                  name ="Return"
+                  parent= "menu_product_phone"
+                  action="action_product_phone"
+                  sequence="2"/>
+        <menuitem id ="hoadon_phone"
+                  name ="Invoicing"
+                  parent= "menu_product_phone"
+                  action="action_product_phone"
+                  sequence="3"/>
+
 </data>
         </odoo>

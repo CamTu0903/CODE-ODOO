@@ -8,7 +8,7 @@
     'category': 'Uncategorized',
     'version': '0.1',
     'sequence': -150,
-    'depends': ['product'],
+    'depends': ['product','sale'],
     'data': [
         'security/ir.model.access.csv',
         # 'data/doitradata.xml',
@@ -17,6 +17,7 @@
         'views/doitra.xml',
         'views/returns.xml',
         'views/product.xml',
+        'views/hoadon.xml'
     ],
     # only loaded in demonstration mode
     'installable': True,

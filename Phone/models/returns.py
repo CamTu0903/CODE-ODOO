@@ -49,6 +49,7 @@ class ReturnsGoods(models.Model):
     DonVi=fields.Char('Unit', default='Chiec')
     HotLine=fields.Char(string='Hotline', default='1800 1060')
     Phone_image = fields.Binary("Phone Image", attachment=True, help="Phone Image")
+    mahoadon=fields.Many2one('account.move',string="InvoicingID", delegate=True, default='')
 
 
     @api.model
