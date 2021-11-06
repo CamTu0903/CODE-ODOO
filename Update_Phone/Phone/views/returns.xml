@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="returns_form_view" model="ir.ui.view">
+            <field name="name">returns.goods.form.view</field>
+            <field name="model">returns.goods</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_title">
+                            <group>
+                                <field name="madonhang"/>
+                            </group>
+                            <label for="name" string="Goods Name" class="oe_edit_only"/>
+                            <h1><field name="name" placeholder="name"/></h1>
+                            <label for="owner_id"/>
+                            <h3><field name="owner_id"/></h3>
+                            <group>
+                                <field name="ChiuThue"/>
+                                <field name="HoanTien"/>
+                                <field name="mahoadon"/>
+                            </group>
+                        </div>
+                        <group name="Phone_image">
+                            <group>
+                                <field name="technician_name"/>
+                                <field name="SoLuong"/>
+                                <field name="date_request"/>
+                                <field name="return_date"/>
+                            </group>
+                            <group>
+                                <field name="brand_name" placeholder="Brand name"/>
+                                <field name="model_name" placeholder="Model name" />
+                                <field name="Request"/>
+                                <field name="Method"/>
+                                <field name="sent_through"/>
+                                <field name="Status"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="general_information" string="General Information">
+								<group>
+									<group>
+										<field name="LyDoTraHang"/>
+									</group>
+									<group>
+										<label for="TinhTrangHangHoa" colspan="2"/>
+										<field name="TinhTrangHangHoa" colspan="2" nolabel="1"/>
+									</group>
+                                    <group>
+										<field name="GhiChu"/>
+									</group>
+								</group>
+							</page>
+							<page name="additional_information" string="Additional Information">
+                                <group>
+									<group string="Phone Images" >
+										<field name="Phone_image" widget="image" />
+									</group>
+								</group>
+                                <group>
+									<group string="HotLine">
+										<field name="HotLine" />
+									</group>
+								</group>
+							</page>
+                            <page name="additional_information" string="Related Products">
+								<group>
+									<field name="product_ids"/>
+                                </group>
+							</page>
+                            <page name="additional_information" string="Related">
+								<group>
+									<field name="related_product"/>
+                                </group>
+							</page>
+
+						</notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="returns_goods_tree_view" model="ir.ui.view">
+            <field name="name">returns.goods.tree.view</field>
+            <field name="model">returns.goods</field>
+            <field name="arch" type="xml">
+                <tree string="Phones" default_order="create_date desc">
+                    <field name="madonhang"/>
+                    <field name="mahoadon"/>
+                    <field name="name"/>
+                    <field name="Status"/>
+                    <field name="SoLuong"/>
+                    <field name="NgayTao"/>
+                    <field name="LyDoTraHang"/>
+                    <field name="Request"/>
+                    <field name="owner_id"/>
+                    <button name="custom_remove" type="object" string="Remove" class="oe_highlight"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="returns_goods_search_view" model="ir.ui.view">
+            <field name="name">returns_goods_search_view</field>
+            <field name="model">returns.goods</field>
+            <field eval="10" name="priority"/>
+            <field name="arch" type="xml">
+                <search string="Returns Goods Search">
+                    <field name="name" string="Goods Name"/>
+                    <field name="Request" string="Request"/>
+                    <field name="owner_id"/>
+                        <group expand='0' string='Group by...'>
+                            <filter string='Request' name="Request_group" context="{'group_by': 'Request'}"/>
+                            <filter string='Owner' name="owner_group" context="{'group_by': 'owner_id'}"/>
+                        </group>
+                        <group expand='0' string='Filters'>
+                            <filter name="change_filter" string="Change" domain="[('Request', '=',  'change')]"/>
+                            <filter name="return_filter" string="Return" domain="[('Request', '=',  'return')]"/>
+                        </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_returns_goods" model="ir.actions.act_window">
+            <field name="name">Phone</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">returns.goods</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                    <p class="o_view_nocontent_empty_folder">Click to Create a New Record. </p>
+                <field name="search_view_id" ref="returns_goods_search_view"/>
+           </field>
+        </record>
+
+        <record id="seq_module_returns" model="ir.sequence">
+            <field name="name">returns sequence </field>
+            <field name="code">returns.goods</field>
+            <field name="prefix">MSP</field>
+            <field name="padding">6</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <menuitem id="menu_returns_goods"
+            name="Returns"
+            action="action_returns_goods"
+            sequence="10"
+            groups="base.group_user"
+
+        />
+
+    </data>
+</odoo>

@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+          <record id="action_invoices" model="ir.actions.act_window">
+            <field name="name">Invoices</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.move</field>
+          </record>
+
+        <menuitem id="menu_invoices"
+                  name="Invoices Phone"
+                  action="action_invoices"
+                  parent="mobile_service_shop_parts"
+                  sequence="10"
+                  groups="base.group_user"/>
+    </data>
+</odoo>

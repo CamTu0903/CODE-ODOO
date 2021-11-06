@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+          <record id="action_sale" model="ir.actions.act_window">
+            <field name="name">Quotations Phone</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order</field>
+        </record>
+
+        <menuitem id="menu_quotations"
+                  name="Quotations Phone"
+                  action="action_sale"
+                  parent="mobile_service_shop_parts"
+                  sequence="10"
+                  groups="base.group_user"/>
+    </data>
+</odoo>
