@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="product_form_view" model="ir.ui.view">
+            <field name="name">product.phone.form.view</field>
+            <field name="model">product.phone</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_title">
+                            <group>
+                                <field name="product_id"/>
+                            </group>
+                            <label for="name" string="New Name" class="oe_edit_only"/>
+                            <h1><field name="name" placeholder="..."/></h1>
+                            <label for="product_phone_id" string="Phone"/>
+                            <h1><field name="product_phone_id" placeholder="..."/></h1>
+                            <label for="owner_id"/>
+                            <h3><field name="owner_id"/></h3>
+                            <group>
+                                <label for="BaoHanh" string="Warranty"/>
+                                <h3><field name="BaoHanh"/></h3>
+                                <label for="ThuMua" string="Repurchase"/>
+                                <h3><field name="ThuMua"/></h3>
+                            </group>
+                            <group>
+                                <field name="basic_price"/>
+                                <field name="bonus_price"/>
+                                <field name="final_price" />
+                            </group>
+                        </div>
+                        <group name="Phone_image">
+                            <group>
+                                <field name="SoLuong"/>
+                                <field name="TinhTrang"/>
+                            </group>
+                            <group>
+                                <field name="TinhTrangMua"/>
+                                <field name="TonKho"/>
+                                <field name="brand_id"/>
+
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="general_information" string="General Information">
+								<group>
+									<group>
+										<field name="NhanHieu"/>
+									</group>
+									<group>
+										<field name="ThoiLGBH" />
+									</group>
+                                    <group>
+										<field name="QuaTangKem"/>
+									</group>
+                                    <group>
+										<field name="ChiNhanh"/>
+									</group>
+								</group>
+							</page>
+							<page name="additional_information" string="Additional Information">
+								<group>
+									<group >
+										<field name="DoiTuongKH" />
+									</group>
+                                    <group>
+										<field name="NhaCC"/>
+									</group>
+                                     <group>
+										<field name="PhuKien"/>
+									</group>
+                                </group>
+							</page>
+                            <page name="additional_information" string="Related Products">
+								<group>
+									<field name="product_ids"/>
+                                </group>
+							</page>
+                            <page name="additional_information" string="Saleperson">
+								<group>
+
+									<field name="sale_man"/>
+                                </group>
+							</page>
+						</notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="product_phone_tree_view" model="ir.ui.view">
+            <field name="name">product.phone.tree.view</field>
+            <field name="model">product.phone</field>
+            <field name="arch" type="xml">
+                <tree string="Phones" default_order="create_date desc">
+                    <field name="product_id"/>
+                    <field name="name"/>
+                    <field name="SoLuong"/>
+                    <field name="TinhTrang"/>
+                    <field name="TinhTrangMua"/>
+                    <field name="final_price" />
+                    <field name="TonKho"/>
+                    <field name="NhanHieu"/>
+                    <field name="ThoiLGBH" />
+                    <field name="DoiTuongKH" />
+                    <button name="custom_remove" type="object" string="Remove" class="oe_highlight"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <record id="product_phone_search_view" model="ir.ui.view">
+            <field name="name">product_phone_search_view</field>
+            <field name="model">product.phone</field>
+            <field eval="10" name="priority"/>
+            <field name="arch" type="xml">
+                <search string="Product Phone Search">
+                    <field name="name" string="New Name"/>
+                    <field name="NhanHieu" string="Brand"/>
+                    <field name="owner_id"/>
+                        <group expand='0' string='Group by...'>
+                            <filter string='Status' name="TinhTrang_group" context="{'group_by': 'TinhTrang'}"/>
+                            <filter string='Owner' name="owner_group" context="{'group_by': 'owner_id'}"/>
+                        </group>
+                        <group expand='0' string='Filters'>
+                            <filter name="buy_now_filter" string="Buy now" domain="[('TinhTrangMua', '=',  'buy now')]"/>
+                            <filter name="nstallmen_ purchase_filter" string="Installment purchase" domain="[('TinhTrangMua', '=',  'nstallment purchase')]"/>
+                        </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_product_phone" model="ir.actions.act_window">
+            <field name="name">Phone</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.phone</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                    <p class="o_view_nocontent_empty_folder">Click to Create a New Record. </p>
+                <field name="search_view_id" ref="product_phone_search_view"/>
+           </field>
+        </record>
+
+        <record id="seq_module_product" model="ir.sequence">
+            <field name="name">returns product </field>
+            <field name="code">product.phone</field>
+            <field name="prefix">MSP</field>
+            <field name="padding">6</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+<!--        <menuitem id="menu_product_phone"-->
+<!--            name="Product"-->
+<!--            action="action_product_phone"-->
+<!--            sequence="10"-->
+<!--            groups="base.group_user"/>-->
+<!--        -->
+<!--        <menuitem id="mobile_service_shop_parts"-->
+<!--            name="Brand"-->
+<!--            action="product_template_action_product"-->
+<!--            sequence="10"-->
+<!--            groups="base.group_user"/>-->
+    </data>
+</odoo>

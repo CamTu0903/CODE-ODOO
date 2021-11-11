@@ -1,0 +1,47 @@
+<odoo>
+    <data>
+
+        <record id="branch_model_form_view" model="ir.ui.view">
+            <field name="name">branch.model.form</field>
+            <field name="model">branch.model</field>
+            <field name="arch" type="xml">
+                <form string="Branch">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="branch_model"/>
+                                <field name="address_details"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="branch_model_tree_view" model="ir.ui.view">
+            <field name="name">branch.model.tree</field>
+            <field name="model">branch.model</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="branch_model"/>
+                    <field name="address_details"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_branch_model" model="ir.actions.act_window">
+            <field name="name">Branch</field>
+            <field name="res_model">branch.model</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="branch_model_tree_view"/>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to Create a New Record.
+                </p>
+            </field>
+        </record>
+
+        <menuitem action="action_branch_model" id="menu_branch_model" parent="menu_mobile_brand"
+                  name="Branch" sequence="4"/>
+    </data>
+</odoo>

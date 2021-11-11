@@ -1,0 +1,51 @@
+<odoo>
+    <data>
+
+        <record id="gift_model_form_view" model="ir.ui.view">
+            <field name="name">gift.model.form</field>
+            <field name="model">bundled.gift</field>
+            <field name="arch" type="xml">
+                <form string="Bundled gift">
+                    <sheet>
+                        <field name="image_medium" widget='image' class="oe_avatar"/>
+                        <group>
+                            <group>
+                                <field name="bundled_gift"/>
+                                <field name="MoTa"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="gift_model_tree_view" model="ir.ui.view">
+            <field name="name">gift.model.tree</field>
+            <field name="model">bundled.gift</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="bundled_gift"/>
+                    <field name="image_medium" widget='image' class="Your_custom_class"/>
+                    <field name="MoTa"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="action_gift_models" model="ir.actions.act_window">
+            <field name="name">Bundled gift</field>
+            <field name="res_model">bundled.gift</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_empty_folder">
+                    Click to Create a New Record.
+                </p>
+            </field>
+        </record>
+
+        <menuitem action="action_gift_models" id="menu_action_gift"
+                  parent="menu_mobile_brand"
+                  name="Bundled gift" sequence="3"/>
+    </data>
+</odoo>

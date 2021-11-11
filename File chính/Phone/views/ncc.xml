@@ -1,0 +1,65 @@
+<odoo>
+    <data>
+
+        <record id="ncc_model_form_view" model="ir.ui.view">
+            <field name="name">ncc.model.form</field>
+            <field name="model">ncc.model</field>
+            <field name="arch" type="xml">
+                <form string="Supplier">
+                    <sheet>
+                        <field name="image" widget='image' class="oe_avatar"/>
+                        <group>
+                            <group>
+                                <field name="maNCC"/>
+                                <field name="ncc_model"/>
+                                <field name="DC"/>
+                            </group>
+                            <group>
+                                <field name="Sdt"/>
+                                <field name="Email"/>
+                                <field name="status"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="ncc_model_tree_view" model="ir.ui.view">
+            <field name="name">ncc.model.tree</field>
+            <field name="model">ncc.model</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="maNCC"/>
+                    <field name="ncc_model"/>
+                    <field name="Sdt"/>
+                    <field name="DC"/>
+                    <field name="Email"/>
+                    <field name="status"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_ncc_model" model="ir.actions.act_window">
+            <field name="name">Provide</field>
+            <field name="res_model">ncc.model</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="ncc_model_tree_view"/>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to Create a New Record.
+                </p>
+            </field>
+        </record>
+        <record id="seq_module_ncc" model="ir.sequence">
+            <field name="name">ncc sequence </field>
+            <field name="code">ncc.model</field>
+            <field name="prefix">MSUP</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <menuitem action="action_ncc_model" id="menu_ncc_model" parent="menu_mobile_brand"
+                  name="Supplier" sequence="5"/>
+    </data>
+</odoo>

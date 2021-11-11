@@ -1,0 +1,66 @@
+<odoo>
+    <data>
+
+        <record id="sent_through_form_view" model="ir.ui.view">
+            <field name="name">sent.through.form</field>
+            <field name="model">sent.through</field>
+            <field name="arch" type="xml">
+                <form string="Transporters">
+                    <sheet>
+                        <field name="image" widget='image' class="oe_avatar"/>
+                        <group>
+                            <group>
+                                <field name="maVC"/>
+                                <group>
+                                <field name="DichVu"/>
+                                <field name="ThuTien"/>
+                                <field name="Hotline"/>
+                                </group>
+                            </group>
+                            <group>
+                                <field name="sent_through"/>
+                                <field name="DC"/>
+                                <field name="TimeLV"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="sent_through_tree_view" model="ir.ui.view">
+            <field name="name">sent.through.tree</field>
+            <field name="model">sent.through</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="maVC"/>
+                    <field name="sent_through"/>
+                    <field name="Hotline"/>
+                    <field name="image"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_sent_through" model="ir.actions.act_window">
+            <field name="name">Transporters</field>
+            <field name="res_model">sent.through</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="sent_through_tree_view"/>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to Create a New Record.
+                </p>
+            </field>
+        </record>
+        <record id="seq_module_nvc" model="ir.sequence">
+            <field name="name">nvc sequence </field>
+            <field name="code">sent.through</field>
+            <field name="prefix">MVC</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <menuitem action="action_sent_through" id="menu_sent_through" parent="menu_mobile_brand"
+                  name="Transporters" sequence="6"/>
+    </data>
+</odoo>

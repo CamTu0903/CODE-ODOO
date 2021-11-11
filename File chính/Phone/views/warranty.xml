@@ -1,0 +1,50 @@
+<odoo>
+    <data>
+
+        <record id="warranty_form_view" model="ir.ui.view">
+            <field name="name">warranty.model.form</field>
+            <field name="model">warranty.model</field>
+            <field name="arch" type="xml">
+                <form string="Warranty">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="warranty_model"/>
+                                <field name="mota"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="warranty_tree_view" model="ir.ui.view">
+            <field name="name">warranty.model.tree</field>
+            <field name="model">warranty.model</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="warranty_model"/>
+                    <field name="mota"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_warranty_model" model="ir.actions.act_window">
+            <field name="name">Warranty</field>
+            <field name="res_model">warranty.model</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="warranty_tree_view"/>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to Create a New Record.
+                </p>
+            </field>
+        </record>
+
+        <menuitem action="action_warranty_model" id="menu_action_warranty_model"
+                  parent="menu_mobile_brand"
+                  name="Warranty period"
+                  sequence="2"/>
+
+    </data>
+</odoo>
